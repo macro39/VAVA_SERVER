@@ -19,7 +19,7 @@
       <Comment>default administrative connection database</Comment>
       <StateNumber>567</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>199212</IntrospectionStateNumber>
+      <IntrospectionStateNumber>199271</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
       <Relations>sequence|table|92519|92521|1
@@ -124,7 +124,7 @@ sequence|table|92527|92529|1
       <Comment>standard public schema</Comment>
       <StateNumber>360</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>199213</IntrospectionStateNumber>
+      <IntrospectionStateNumber>199272</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -221,17 +221,78 @@ sequence|table|92527|92529|1
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <table id="35" parent="22" name="employee">
+    <table id="35" parent="22" name="customer">
+      <ObjectId>92540</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>199268</StateNumber>
+    </table>
+    <table id="36" parent="22" name="employee">
       <ObjectId>92529</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>199209</StateNumber>
     </table>
-    <table id="36" parent="22" name="employee_type">
+    <table id="37" parent="22" name="employee_type">
       <ObjectId>92521</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>199205</StateNumber>
     </table>
-    <column id="37" parent="35" name="employee_id">
+    <column id="38" parent="35" name="customer_id">
+      <Position>1</Position>
+      <DataType>varchar(8)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199268</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="39" parent="35" name="first_name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199268</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="40" parent="35" name="last_name">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199268</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="41" parent="35" name="address">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199268</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="42" parent="35" name="bank_account">
+      <Position>5</Position>
+      <DataType>varchar(30)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199268</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="43" parent="35" name="phone">
+      <Position>6</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199268</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="44" parent="35" name="customer_pkey">
+      <ObjectId>92546</ObjectId>
+      <StateNumber>199268</StateNumber>
+      <ColNames>customer_id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="45" parent="35" name="customer_pkey">
+      <ObjectId>92547</ObjectId>
+      <StateNumber>199268</StateNumber>
+      <ColNames>customer_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>customer_pkey</UnderlyingIndexName>
+    </key>
+    <column id="46" parent="36" name="employee_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -239,75 +300,75 @@ sequence|table|92527|92529|1
       <DefaultExpression>nextval(&apos;employee_employee_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="38" parent="35" name="first_name">
+    <column id="47" parent="36" name="first_name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199209</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="39" parent="35" name="last_name">
+    <column id="48" parent="36" name="last_name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199209</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="40" parent="35" name="login">
+    <column id="49" parent="36" name="login">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199209</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="41" parent="35" name="password">
+    <column id="50" parent="36" name="password">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199209</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="42" parent="35" name="phone">
+    <column id="51" parent="36" name="phone">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199209</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="43" parent="35" name="type">
+    <column id="52" parent="36" name="type">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199209</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="44" parent="35" name="employee_pkey">
+    <index id="53" parent="36" name="employee_pkey">
       <ObjectId>92536</ObjectId>
       <StateNumber>199209</StateNumber>
       <ColNames>employee_id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <index id="45" parent="35" name="employee_login_key">
+    <index id="54" parent="36" name="employee_login_key">
       <ObjectId>92538</ObjectId>
       <StateNumber>199209</StateNumber>
       <ColNames>login</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="46" parent="35" name="employee_pkey">
+    <key id="55" parent="36" name="employee_pkey">
       <ObjectId>92537</ObjectId>
       <StateNumber>199209</StateNumber>
       <ColNames>employee_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>employee_pkey</UnderlyingIndexName>
     </key>
-    <key id="47" parent="35" name="employee_login_key">
+    <key id="56" parent="36" name="employee_login_key">
       <ObjectId>92539</ObjectId>
       <StateNumber>199209</StateNumber>
       <ColNames>login</ColNames>
       <UnderlyingIndexName>employee_login_key</UnderlyingIndexName>
     </key>
-    <column id="48" parent="36" name="employee_type_id">
+    <column id="57" parent="37" name="employee_type_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -315,21 +376,21 @@ sequence|table|92527|92529|1
       <DefaultExpression>nextval(&apos;employee_type_employee_type_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="49" parent="36" name="employee_type">
+    <column id="58" parent="37" name="employee_type">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199205</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="50" parent="36" name="employee_type_pkey">
+    <index id="59" parent="37" name="employee_type_pkey">
       <ObjectId>92525</ObjectId>
       <StateNumber>199205</StateNumber>
       <ColNames>employee_type_id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="51" parent="36" name="employee_type_pkey">
+    <key id="60" parent="37" name="employee_type_pkey">
       <ObjectId>92526</ObjectId>
       <StateNumber>199205</StateNumber>
       <ColNames>employee_type_id</ColNames>

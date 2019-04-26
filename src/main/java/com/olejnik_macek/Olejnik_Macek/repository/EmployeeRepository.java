@@ -1,7 +1,6 @@
 package com.olejnik_macek.Olejnik_Macek.repository;
 
 import com.olejnik_macek.Olejnik_Macek.model.Employee;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

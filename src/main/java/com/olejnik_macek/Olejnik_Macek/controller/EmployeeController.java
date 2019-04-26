@@ -69,7 +69,7 @@ public class EmployeeController {
                 .orElseThrow(() -> new ResourceNotFoundException("Employee", "id", employeeID));
     }
 
-    // get employee by First and Last Name
+    // get employee by Last Name
     @GetMapping("/employee/searchByLastName/{lastName}/{offSet}")
     public List<Employee> getEmployeeByFirstAndLastName(@PathVariable(value = "lastName") String lastName,
                                                         @PathVariable(value = "offSet") Integer offSet) {
@@ -92,7 +92,7 @@ public class EmployeeController {
 
     // update
     @PutMapping("/employee")
-    public Boolean updateNote(@Valid @RequestBody Employee employeeDetail) {
+    public Boolean updateEmployee(@Valid @RequestBody Employee employeeDetail) {
 
         Employee employee = employeeRepository.findById(employeeDetail.getEmployee_id())
                 .orElse(null);
