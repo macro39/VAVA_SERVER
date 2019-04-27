@@ -19,11 +19,12 @@
       <Comment>default administrative connection database</Comment>
       <StateNumber>567</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>199271</IntrospectionStateNumber>
+      <IntrospectionStateNumber>199300</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
       <Relations>sequence|table|92519|92521|1
 sequence|table|92527|92529|1
+sequence|table|92548|92550|1
 </Relations>
     </database>
     <database id="5" parent="1" name="querry_fiit_stuba">
@@ -124,7 +125,7 @@ sequence|table|92527|92529|1
       <Comment>standard public schema</Comment>
       <StateNumber>360</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>199272</IntrospectionStateNumber>
+      <IntrospectionStateNumber>199301</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -205,7 +206,15 @@ sequence|table|92527|92529|1
       <CacheSize>1</CacheSize>
       <DataType>bigint</DataType>
     </sequence>
-    <sequence id="33" parent="22" name="employee_employee_id_seq">
+    <sequence id="33" parent="22" name="car_info_car_info_id_seq">
+      <ObjectId>92548</ObjectId>
+      <StateNumber>199294</StateNumber>
+      <Owner>postgres</Owner>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="34" parent="22" name="employee_employee_id_seq">
       <ObjectId>92527</ObjectId>
       <StateNumber>199209</StateNumber>
       <Owner>postgres</Owner>
@@ -213,7 +222,7 @@ sequence|table|92527|92529|1
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <sequence id="34" parent="22" name="employee_type_employee_type_id_seq">
+    <sequence id="35" parent="22" name="employee_type_employee_type_id_seq">
       <ObjectId>92519</ObjectId>
       <StateNumber>199205</StateNumber>
       <Owner>postgres</Owner>
@@ -221,78 +230,239 @@ sequence|table|92527|92529|1
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <table id="35" parent="22" name="customer">
+    <table id="36" parent="22" name="car">
+      <ObjectId>92566</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>199297</StateNumber>
+    </table>
+    <table id="37" parent="22" name="car_info">
+      <ObjectId>92550</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>199297</StateNumber>
+    </table>
+    <table id="38" parent="22" name="customer">
       <ObjectId>92540</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>199268</StateNumber>
     </table>
-    <table id="36" parent="22" name="employee">
+    <table id="39" parent="22" name="employee">
       <ObjectId>92529</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>199209</StateNumber>
     </table>
-    <table id="37" parent="22" name="employee_type">
+    <table id="40" parent="22" name="employee_type">
       <ObjectId>92521</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>199205</StateNumber>
     </table>
-    <column id="38" parent="35" name="customer_id">
+    <column id="41" parent="36" name="car_vin">
+      <Position>1</Position>
+      <DataType>varchar(17)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199297</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="42" parent="36" name="car_info_id">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199297</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="43" parent="36" name="year_of_production">
+      <Position>3</Position>
+      <DataType>date|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199297</StateNumber>
+      <TypeId>1082</TypeId>
+    </column>
+    <column id="44" parent="36" name="mileage">
+      <Position>4</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199297</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="45" parent="36" name="spz">
+      <Position>5</Position>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199297</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="46" parent="36" name="car_pkey">
+      <ObjectId>92569</ObjectId>
+      <StateNumber>199297</StateNumber>
+      <ColNames>car_vin</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="47" parent="36" name="car_pkey">
+      <ObjectId>92570</ObjectId>
+      <StateNumber>199297</StateNumber>
+      <ColNames>car_vin</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>car_pkey</UnderlyingIndexName>
+    </key>
+    <foreign-key id="48" parent="36" name="car_car_info_id_fkey">
+      <ObjectId>92571</ObjectId>
+      <StateNumber>199297</StateNumber>
+      <ColNames>car_info_id</ColNames>
+      <RefTableId>92550</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>car_info</RefTableName>
+      <RefKeyName>car_info_pkey</RefKeyName>
+      <RefColNames>car_info_id</RefColNames>
+    </foreign-key>
+    <column id="49" parent="37" name="car_info_id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199294</StateNumber>
+      <DefaultExpression>nextval(&apos;car_info_car_info_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="50" parent="37" name="brand">
+      <Position>2</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199294</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="51" parent="37" name="model">
+      <Position>3</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199294</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="52" parent="37" name="body_style">
+      <Position>4</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199294</StateNumber>
+      <DefaultExpression>&apos;Sedan&apos;::character varying</DefaultExpression>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="53" parent="37" name="engine_capacity">
+      <Position>5</Position>
+      <DataType>double precision|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199294</StateNumber>
+      <DefaultExpression>&apos;2&apos;::double precision</DefaultExpression>
+      <TypeId>701</TypeId>
+    </column>
+    <column id="54" parent="37" name="engine_power">
+      <Position>6</Position>
+      <DataType>smallint|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199294</StateNumber>
+      <DefaultExpression>&apos;120&apos;::smallint</DefaultExpression>
+      <TypeId>21</TypeId>
+    </column>
+    <column id="55" parent="37" name="gear_box">
+      <Position>7</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199294</StateNumber>
+      <DefaultExpression>&apos;manuálna&apos;::character varying</DefaultExpression>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="56" parent="37" name="fuel">
+      <Position>8</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199294</StateNumber>
+      <DefaultExpression>&apos;diesel&apos;::character varying</DefaultExpression>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="57" parent="37" name="color">
+      <Position>9</Position>
+      <DataType>varchar(255)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199294</StateNumber>
+      <DefaultExpression>&apos;biela&apos;::character varying</DefaultExpression>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="58" parent="37" name="price_per_day">
+      <Position>10</Position>
+      <DataType>double precision|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>199294</StateNumber>
+      <DefaultExpression>&apos;50&apos;::double precision</DefaultExpression>
+      <TypeId>701</TypeId>
+    </column>
+    <index id="59" parent="37" name="car_info_pkey">
+      <ObjectId>92564</ObjectId>
+      <StateNumber>199294</StateNumber>
+      <ColNames>car_info_id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="60" parent="37" name="car_info_pkey">
+      <ObjectId>92565</ObjectId>
+      <StateNumber>199294</StateNumber>
+      <ColNames>car_info_id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>car_info_pkey</UnderlyingIndexName>
+    </key>
+    <column id="61" parent="38" name="customer_id">
       <Position>1</Position>
       <DataType>varchar(8)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199268</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="39" parent="35" name="first_name">
+    <column id="62" parent="38" name="first_name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199268</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="40" parent="35" name="last_name">
+    <column id="63" parent="38" name="last_name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199268</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="41" parent="35" name="address">
+    <column id="64" parent="38" name="address">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199268</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="42" parent="35" name="bank_account">
+    <column id="65" parent="38" name="bank_account">
       <Position>5</Position>
       <DataType>varchar(30)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199268</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="43" parent="35" name="phone">
+    <column id="66" parent="38" name="phone">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199268</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="44" parent="35" name="customer_pkey">
+    <index id="67" parent="38" name="customer_pkey">
       <ObjectId>92546</ObjectId>
       <StateNumber>199268</StateNumber>
       <ColNames>customer_id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="45" parent="35" name="customer_pkey">
+    <key id="68" parent="38" name="customer_pkey">
       <ObjectId>92547</ObjectId>
       <StateNumber>199268</StateNumber>
       <ColNames>customer_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>customer_pkey</UnderlyingIndexName>
     </key>
-    <column id="46" parent="36" name="employee_id">
+    <column id="69" parent="39" name="employee_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -300,75 +470,75 @@ sequence|table|92527|92529|1
       <DefaultExpression>nextval(&apos;employee_employee_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="47" parent="36" name="first_name">
+    <column id="70" parent="39" name="first_name">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199209</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="48" parent="36" name="last_name">
+    <column id="71" parent="39" name="last_name">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199209</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="49" parent="36" name="login">
+    <column id="72" parent="39" name="login">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199209</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="50" parent="36" name="password">
+    <column id="73" parent="39" name="password">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199209</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="51" parent="36" name="phone">
+    <column id="74" parent="39" name="phone">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199209</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="52" parent="36" name="type">
+    <column id="75" parent="39" name="type">
       <Position>7</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199209</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="53" parent="36" name="employee_pkey">
+    <index id="76" parent="39" name="employee_pkey">
       <ObjectId>92536</ObjectId>
       <StateNumber>199209</StateNumber>
       <ColNames>employee_id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <index id="54" parent="36" name="employee_login_key">
+    <index id="77" parent="39" name="employee_login_key">
       <ObjectId>92538</ObjectId>
       <StateNumber>199209</StateNumber>
       <ColNames>login</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="55" parent="36" name="employee_pkey">
+    <key id="78" parent="39" name="employee_pkey">
       <ObjectId>92537</ObjectId>
       <StateNumber>199209</StateNumber>
       <ColNames>employee_id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>employee_pkey</UnderlyingIndexName>
     </key>
-    <key id="56" parent="36" name="employee_login_key">
+    <key id="79" parent="39" name="employee_login_key">
       <ObjectId>92539</ObjectId>
       <StateNumber>199209</StateNumber>
       <ColNames>login</ColNames>
       <UnderlyingIndexName>employee_login_key</UnderlyingIndexName>
     </key>
-    <column id="57" parent="37" name="employee_type_id">
+    <column id="80" parent="40" name="employee_type_id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -376,21 +546,21 @@ sequence|table|92527|92529|1
       <DefaultExpression>nextval(&apos;employee_type_employee_type_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="58" parent="37" name="employee_type">
+    <column id="81" parent="40" name="employee_type">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>199205</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="59" parent="37" name="employee_type_pkey">
+    <index id="82" parent="40" name="employee_type_pkey">
       <ObjectId>92525</ObjectId>
       <StateNumber>199205</StateNumber>
       <ColNames>employee_type_id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="60" parent="37" name="employee_type_pkey">
+    <key id="83" parent="40" name="employee_type_pkey">
       <ObjectId>92526</ObjectId>
       <StateNumber>199205</StateNumber>
       <ColNames>employee_type_id</ColNames>

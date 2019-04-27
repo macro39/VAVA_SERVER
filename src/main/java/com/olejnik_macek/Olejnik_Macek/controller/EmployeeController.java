@@ -81,13 +81,7 @@ public class EmployeeController {
     // get types of employee
     @GetMapping("/employee/getTypes")
     public ArrayList<String> getTypes() {
-        ArrayList<String> stringList = new ArrayList<>();
-
-        for(EmployeeType employeeType : employeeTypeRepository.findAll()) {
-            stringList.add(employeeType.getEmployee_type());
-        }
-
-        return stringList;
+        return employeeTypeRepository.getAllTypes();
     }
 
     // update
