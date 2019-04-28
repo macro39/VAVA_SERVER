@@ -2,8 +2,11 @@ package com.olejnik_macek.Olejnik_Macek.controller;
 
 import com.olejnik_macek.Olejnik_Macek.model.Car;
 import com.olejnik_macek.Olejnik_Macek.model.CarInfo;
+import com.olejnik_macek.Olejnik_Macek.model.CarRepair;
 import com.olejnik_macek.Olejnik_Macek.repository.CarInfoRepository;
+import com.olejnik_macek.Olejnik_Macek.repository.CarRepairRepository;
 import com.olejnik_macek.Olejnik_Macek.repository.CarRepository;
+import com.olejnik_macek.Olejnik_Macek.repository.ServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,10 +27,32 @@ public class CarController {
     @Autowired
     CarInfoRepository carInfoRepository;
 
+    @Autowired
+    CarRepairRepository carRepairRepository;
+
+    @Autowired
+    ServiceRepository serviceRepository;
+
     // find just one by VIN
     @GetMapping("/car/{carVIN}")
     public Car getCarByVIN(@PathVariable (value = "carVIN") String carVIN) {
         return carRepository.findByCarVIN(carVIN);
+    }
+
+    // get all services - name + location
+    @GetMapping("/getServices")
+    public List<String> getAllServices() {
+        return serviceRepository.getAllServices();
+    }
+
+    @PostMapping("/addRepair")
+    public Boolean addCarRepair(@Valid @RequestBody Car car) {
+
+        carRepairRepository.saveAll(car.getCarRepairs());
+
+        carRepository.save(car);
+
+        return true;
     }
 
     // get 500

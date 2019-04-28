@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "car")
@@ -38,6 +39,13 @@ public class Car {
     @Size(max = 20)
     @Column(name = "spz")
     private String carSPZ;
+
+    @ManyToMany
+    @JoinTable(
+            name = "car_repair",
+            joinColumns = @JoinColumn(name = "car_vin"),
+            inverseJoinColumns = @JoinColumn(name = "repair_id"))
+    private Set<CarRepair> carRepairs;
 
 
     public String getCarVIN() {
@@ -78,5 +86,17 @@ public class Car {
 
     public void setCarSPZ(String carSPZ) {
         this.carSPZ = carSPZ;
+    }
+
+    public Set<CarRepair> getCarRepairs() {
+        return carRepairs;
+    }
+
+    public void setCarRepairs(Set<CarRepair> carRepairs) {
+        this.carRepairs = carRepairs;
+    }
+
+    public void addRepair(CarRepair carRepair) {
+        this.carRepairs.add(carRepair);
     }
 }
