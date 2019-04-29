@@ -118,7 +118,7 @@ public class Contract {
         return this.employee.getEmployee_id();
     }
 
-    public String getCarVIN() { return this.car.getCarVIN(); }
+    public String getcarVIN() { return this.car.getCarVIN(); }
 
-    public String getCustomerID() { return this.customer.getCustomerID(); }
+    public String getcustomerID() { return this.customer.getCustomerID(); }
 }

@@ -55,28 +55,49 @@ public class ContractController {
         return list;
     }
 
-    @GetMapping("/contract/byEmployee/{offSet}")
-    public List<Contract> getContractsByEmployee(@PathVariable (value = "offSet") Integer offSet,
-                                                 @Valid @RequestBody Employee employee){
-        Pageable pageable = PageRequest.of(offSet,500);
+    @GetMapping("/contract/byEmployee/{employeeID}")
+    public List<Contract> getContractsByEmployee(@PathVariable (value = "employeeID") Integer employeeID){
+        List<Contract> contractList = contractRepository.findAll();
 
-        return contractRepository.findAllByEmployeeOrderByContractId(employee, pageable);
+        List<Contract> listOfContractsWithSpecificEmployee = new ArrayList<>();
+
+        for(Contract contract : contractList) {
+            if(contract.getEmployee().getEmployee_id().equals(employeeID)) {
+                listOfContractsWithSpecificEmployee.add(contract);
+            }
+        }
+
+        return listOfContractsWithSpecificEmployee;
     }
 
-    @GetMapping("/contract/byCar/{carVIN}/{offSet}")
-    public List<Contract> getContractsByCar(@PathVariable (value = "carVIN") String carVIN,
-                                            @PathVariable (value = "offSet") Integer offSet){
-        Pageable pageable = PageRequest.of(offSet,500);
+    @GetMapping("/contract/byCar/{carVIN}")
+    public List<Contract> getContractsByCar(@PathVariable (value = "carVIN") String carVIN){
+        List<Contract> contractList = contractRepository.findAll();
 
-        return contractRepository.findAllByCarVINContainingOrderByCarVIN(carVIN,pageable);
+        List<Contract> listOfContractsWithSpecificCar = new ArrayList<>();
+
+        for(Contract contract : contractList) {
+            if(contract.getCar().getCarVIN().contains(carVIN)) {
+                listOfContractsWithSpecificCar.add(contract);
+            }
+        }
+
+        return listOfContractsWithSpecificCar;
     }
 
-    @GetMapping("/contract/byCustomer/{customerID}/{offSet}")
-    public List<Contract> getContractsByCustomer(@PathVariable (value = "customerID") String customerID,
-                                            @PathVariable (value = "offSet") Integer offSet){
-        Pageable pageable = PageRequest.of(offSet,500);
+    @GetMapping("/contract/byCustomer/{customerID}")
+    public List<Contract> getContractsByCustomer(@PathVariable (value = "customerID") String customerID){
+        List<Contract> contractList = contractRepository.findAll();
 
-        return contractRepository.findAllByCustomerIDContainingOrderByCustomerID(customerID, pageable);
+        List<Contract> listOfContractsWithSpecificCustomer = new ArrayList<>();
+
+        for(Contract contract : contractList) {
+            if(contract.getCustomer().getCustomerID().contains(customerID)) {
+                listOfContractsWithSpecificCustomer.add(contract);
+            }
+        }
+
+        return listOfContractsWithSpecificCustomer;
     }
 
     @DeleteMapping("/contract")
