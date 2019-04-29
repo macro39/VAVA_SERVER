@@ -17,11 +17,10 @@ public class CarInfoController {
     CarInfoRepository carInfoRepository;
 
     @PostMapping("/carInfo")
-    public Integer createCarInfo(@Valid @RequestBody CarInfo carInfo) {
+    public void createCarInfo(@Valid @RequestBody CarInfo carInfo) {
         carInfoRepository.save(carInfo);
-        carInfoRepository.flush();
 
-        return carInfo.getCarInfoID();
+        return;
     }
 
     @GetMapping("/carInfo/brand")

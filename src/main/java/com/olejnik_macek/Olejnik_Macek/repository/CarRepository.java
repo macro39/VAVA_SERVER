@@ -11,4 +11,6 @@ public interface CarRepository extends JpaRepository<Car, String>, JpaSpecificat
     Car findByCarVIN(String carVIN);
     List<Car> findAllByCarVINContainingOrderByCarVINAscCarSPZAsc(
             String carVIN, Pageable pageable); // ked nejde je zly import pageable
+
+    List<Car> findAllByCarVIN(String carVIN);
 }
