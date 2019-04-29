@@ -79,4 +79,10 @@ public class ContractController {
         return contractRepository.findAllByCustomerIDContainingOrderByCustomerID(customerID, pageable);
     }
 
+    @DeleteMapping("/contract")
+    public Boolean deleteContract(@Valid @RequestBody Contract contract) {
+        contractRepository.delete(contract);
+
+        return true;
+    }
 }
