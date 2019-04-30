@@ -22,13 +22,13 @@
       <IntrospectionStateNumber>199419</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
-      <Relations>sequence|table|92519|92521|1
-sequence|table|92527|92529|1
-sequence|table|92626|92628|1
+      <Relations>sequence|table|92626|92628|1
 sequence|table|92655|92657|1
+sequence|table|92698|92700|1
 sequence|table|92668|92670|1
 sequence|table|92680|92682|1
-sequence|table|92698|92700|1
+sequence|table|92519|92521|1
+sequence|table|92527|92529|1
 </Relations>
     </database>
     <database id="5" parent="1" name="querry_fiit_stuba">

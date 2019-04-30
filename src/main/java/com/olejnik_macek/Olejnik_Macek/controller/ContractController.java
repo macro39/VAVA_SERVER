@@ -17,7 +17,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -53,6 +58,53 @@ public class ContractController {
         List<Contract> list = page.getContent();
 
         return list;
+    }
+
+    @GetMapping("/contract/exists/{carVIN}/{dateFrom}/{dateTO}")
+    public List<String> checkIfContractExistsInSpecificTimePeriod(
+            @PathVariable (value = "carVIN") String carVIN,
+            @PathVariable (value = "dateFrom") String dateFrom,
+            @PathVariable (value = "dateTO") String dateTo) {
+        Car car = carRepository.findById(carVIN).orElse(null);
+
+        if(car == null) {
+            return null;
+        }
+
+        Date dateFROM = null;
+        Date dateTO = null;
+        try {
+            dateFROM = new SimpleDateFormat("yyyy-MM-dd").parse(dateFrom);
+            dateTO = new SimpleDateFormat("yyyy-MM-dd").parse(dateTo);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        List<Contract> contractList = contractRepository.findAllByCar(car);
+
+        if(contractList.isEmpty()) {
+            return null;
+        }
+
+        List<String> rentalPeriods = new ArrayList<>();
+
+        for(Contract contract : contractList) {
+            if(dateTO.before(contract.getDateFrom())) {
+                continue;
+            } else if(dateFROM.before(contract.getDateFrom()) && dateTO.before(contract.getDateFrom())) {
+                continue;
+            } else if(dateFROM.after(contract.getDateTo())) {
+                continue;
+            }
+
+            rentalPeriods.add(new SimpleDateFormat("yyyy-MM-dd").format(contract.getDateFrom()) + " - " +
+                   new SimpleDateFormat("yyyy-MM-dd").format(contract.getDateTo()));
+        }
+        if(rentalPeriods.isEmpty()) {
+            return null;
+        } else {
+            return  rentalPeriods;
+        }
     }
 
     @GetMapping("/contract/byEmployee/{employeeID}")
